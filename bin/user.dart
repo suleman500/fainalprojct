@@ -52,7 +52,7 @@ class User {
     print("  [6] Printing the ticket     ");
     print("  [7] Events in Destination   ");
     print("  [8] Book Event ");
-    print("  [9] Cancel of the trip");
+   
 
     print("──────────────────────────────");
 
