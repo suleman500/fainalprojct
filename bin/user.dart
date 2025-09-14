@@ -70,10 +70,11 @@ class User {
     print("  [2] Book a Flight           ");
     print("  [3] Games                   ");
     print("  [4] Hotel Reservation       ");
-    print("  [5] Exet                    ");
-    print("  [6] Printing the ticket     ");
-    print("  [7] Events in Destination   ");
-    print("  [8] TICKET Event ");
+
+    print("  [5] Printing the ticket     ");
+    print("  [6] Events in Destination   ");
+    print("  [7] TICKET Event ");
+    print("  [8] Exet                    ");
 
     print("──────────────────────────────");
 
@@ -98,16 +99,16 @@ class User {
             fl.Hotell();
             break;
           case 5:
-            wlcoom();
-            break;
-          case 6:
             tiki(user);
             break;
-          case 7:
+          case 6:
             envent(user);
             break;
-          case 8:
+          case 7:
             tikteven(user);
+            break;
+          case 8:
+            wlcoom();
             break;
           // case 9:
           //canceleTrip(user);
@@ -343,30 +344,55 @@ class User {
 
       switch (g) {
         case 1:
-          if (user.totravel != "null") {
-            if (user.balnce > 0 && 55 <= user.balnce) {
-              //List events = countryEvents[user.totravel]["events"];
+          if (user.evnt == "null") {
+            if (user.totravel != "null") {
+              if (user.balnce > 0 && 55 <= user.balnce) {
+                //List events = countryEvents[user.totravel]["events"];
 
-              if (countryEvents.containsKey(user.totravel)) {
-                print("The events in this country:${user.totravel}");
-                // print(countryEvents[user.totravel]["events"]);
+                if (countryEvents.containsKey(user.totravel)) {
+                  print("The events in this country:${user.totravel}");
+                  // print(countryEvents[user.totravel]["events"]);
 
-                var eventss = countryEvents[user.totravel]["events"];
+                  var eventss = countryEvents[user.totravel]["events"];
 
-                user.evnt = eventss;
-                user.balnce -= 55;
-                print("55 has been deducted from your balance \n");
+                  user.evnt = eventss;
+                  user.balnce -= 55;
+                  print("55 has been deducted from your balance \n");
 
-                print(eventss);
-
+                  print(eventss);
+                  print("---------------------------------------------------");
+                  bool mm = true;
+                  while (mm) {
+                    print("1-Home");
+                    try {
+                      int g = int.parse(stdin.readLineSync()!);
+                      switch (g) {
+                        case 1:
+                          interfce(user);
+                          mm = false;
+                          break;
+                        default:
+                          mm = false;
+                          interfce(user);
+                          break;
+                      }
+                    } catch (s) {
+                      print("Enter Intger nmber");
+                    }
+                  }
+                }
+              } else {
+                print("Your balance is insufficient");
+                print("Your Balnce ${user.balnce}");
                 interfce(user);
               }
             } else {
-              print("Your balance is insufficient");
+              print("You must book a trip first to see he events (Option 2)");
               interfce(user);
             }
           } else {
-            print("You must book a trip first to see he events (Option 2)");
+            print(
+                "Events that have been previously booked cannot be reserved again!!!!!");
             interfce(user);
           }
           break;
